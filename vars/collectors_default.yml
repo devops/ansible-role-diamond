@@ -1,0 +1,15 @@
+diamond_collectors_default:
+  CPUCollector:
+    enabled: True
+  DiskSpaceCollector:
+    enabled: True
+  DiskUsageCollector:
+    enabled: True
+  LoadAverageCollector:
+    enabled: True
+  MemoryCollector:
+    enabled: True
+  VMStatCollector:
+    enabled: True
+  NetworkCollector:
+    enabled: True

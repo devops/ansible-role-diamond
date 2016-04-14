@@ -1,0 +1,7 @@
+---
+- name: Install python-pip ON RedHat/CentOS.
+  yum: name=python-pip state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install influxdb python package.
+  pip: name={{ diamond_influxdb_name }}

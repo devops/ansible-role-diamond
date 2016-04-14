@@ -1,0 +1,31 @@
+---
+# tasks file for ansible-role-diamond
+
+- name: Include collector definitions.
+  include_vars: "collectors_default.yml"
+
+- name: Include install prebuilt diamond on RedHat/CentOS.
+  include: setup-RedHat-rpm.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Include install python influxdb client.
+  include: setup-influxdb.yml
+  when: diamond_influxdb_handler.enable
+
+- name: Update diamond.conf with template.
+  template: src=diamond.conf dest=/etc/diamond/ backup=yes
+  notify:
+    - restart diamond
+
+- name: Configuring default collectors.
+  template: src=collectors.j2 dest={{ diamond_collectors_config_path }}{{ item.key }}.conf
+  with_dict: diamond_collectors_default
+  when: "item.key not in diamond_collectors_extra.keys()"
+  notify:
+    - restart diamond
+
+- name: Configuring extra collectors.
+  template: src=collectors.j2 dest={{ diamond_collectors_config_path }}{{ item.key }}.conf
+  with_dict: diamond_collectors_extra
+  notify:
+    - restart diamond

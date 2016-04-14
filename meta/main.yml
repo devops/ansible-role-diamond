@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: z@zstack.net
+  description: Ansible role to install python diamond
+  company:
+  license: license (BSD, MIT)
+  min_ansible_version: 1.6
+  platforms:
+  - name: EL
+    versions:
+      - 6
+      - 7
+  categories:
+  - monitoring
+  - system
+dependencies: []

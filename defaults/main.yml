@@ -1,0 +1,35 @@
+---
+# defaults file for ansible-role-diamond
+
+diamond_enabled: true
+diamond_rpm: "http://url/diamond-4.0.198-0.noarch.rpm"
+
+# config
+diamond_collectors_config_path: /etc/diamond/collectors/
+diamond_handlers_config_path: /etc/diamond/handlers/
+
+diamond_conf_path_prefix: "servers"
+diamond_conf_interval: 300
+
+# GraphiteHandler
+diamond_graphite_handler:
+  enable: false
+  host: "127.0.0.1"
+  port: 2003
+  timeout: 15
+  batch: 1
+
+# InfluxdbHandler
+diamond_influxdb_name: "influxdb"
+diamond_influxdb_handler:
+  enable: false
+  hostname: "localhost"
+  port: 8096
+  database: "graphite"
+  username: "root"
+  password: "root"
+  batch_size: 1
+  cache_size: 20000
+  time_precision: "s"
+
+diamond_collectors_extra: {}

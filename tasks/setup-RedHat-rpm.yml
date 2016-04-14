@@ -1,0 +1,7 @@
+---
+- name: Install diamond rpm package.
+  yum: name={{ diamond_rpm }} state=present
+
+- name: Ensure diamond enabled at system start.
+  service: name="diamond" enabled=yes
+  when: diamond_enabled
